@@ -46,12 +46,12 @@ fetch("Photos.json")
       img.className = "w-full h-48 object-cover cursor-pointer";
 
       // Create low-res thumbnail first
-      createThumbnail(`photos/${photo.filename}`, 400, (lowResSrc) => {
+      createThumbnail(`${photo.filename}`, 400, (lowResSrc) => {
         img.src = lowResSrc;
       });
 
       // Store full image for lightbox
-      img.dataset.full = `photos/${photo.filename}`;
+      img.dataset.full = `${photo.filename}`;
 
       img.onclick = () => {
         openLightbox(img);
