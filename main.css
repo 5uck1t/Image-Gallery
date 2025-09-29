@@ -1,0 +1,14 @@
+.gallery-item {
+            transition: all 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .lightbox {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .lightbox-img {
+            max-height: 80vh;
+            max-width: 90vw;
+        }

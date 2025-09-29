@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelVault - Image Gallery</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="loadCollections.js" defer></script>
+
+    <style>
+      html, body {
+          height: 100%;
+          margin: 0;
+        }
+
+        body {
+          display: flex;
+          flex-direction: column;
+        }
+
+        main {
+          flex: 1; /* grow to fill available space */
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i data-feather="image" class="text-indigo-600 mr-2"></i>
+                    <span class="text-xl font-semibold text-gray-900">PixelVault</span>
+                </div>
+                <button class="md:hidden text-gray-500">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-down">Your Visual Story</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Discover, organize and showcase your favorite moments in one beautiful gallery
+            </p>
+        </div>
+    </header>
+
+    <!-- Gallery Section -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="mb-8 flex justify-between items-center hidden">
+            <h2 class="text-2xl font-bold text-gray-900">Gallery</h2>
+            <div class="flex space-x-3">
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 transition">
+                    Upload
+                </button>
+                <button class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition">
+                    <i data-feather="plus" class="w-4 h-4 inline mr-1"></i> Add Collection
+                </button>
+            </div>
+        </div>
+        
+
+        <div id="collections" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Gallery Items -->
+            <!-- <div class="collection-item rounded-lg overflow-hidden shadow-md bg-white" data-aos="zoom-in">
+                <img src="http://static.photos/nature/640x360/1" alt="Nature" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900">Nature</h3>
+                    <p class="text-sm text-gray-500">24 photos</p>
+                </div>
+            </div>
+
+            <div class="collection-item rounded-lg overflow-hidden shadow-md bg-white" data-aos="zoom-in" data-aos-delay="100">
+                <img src="http://static.photos/travel/640x360/2" alt="Travel" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900">Travel</h3>
+                    <p class="text-sm text-gray-500">18 photos</p>
+                </div>
+            </div>
+
+            <div class="collection-item rounded-lg overflow-hidden shadow-md bg-white" data-aos="zoom-in" data-aos-delay="200">
+                <img src="http://static.photos/food/640x360/3" alt="Food" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900">Food</h3>
+                    <p class="text-sm text-gray-500">12 photos</p>
+                </div>
+            </div>
+
+            <div class="collection-item rounded-lg overflow-hidden shadow-md bg-white" data-aos="zoom-in" data-aos-delay="300">
+                <img src="http://static.photos/people/640x360/4" alt="People" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900">People</h3>
+                    <p class="text-sm text-gray-500">32 photos</p>
+                </div>
+            </div>
+
+            <div class="collection-item rounded-lg overflow-hidden shadow-md bg-white" data-aos="zoom-in">
+                <img src="http://static.photos/abstract/640x360/5" alt="Abstract" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900">Abstract</h3>
+                    <p class="text-sm text-gray-500">8 photos</p>
+                </div>
+            </div>
+
+            <div class="collection-item rounded-lg overflow-hidden shadow-md bg-white" data-aos="zoom-in" data-aos-delay="100">
+                <img src="http://static.photos/technology/640x360/6" alt="Tech" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900">Technology</h3>
+                    <p class="text-sm text-gray-500">15 photos</p>
+                </div>
+            </div>
+
+            <div class="collection-item rounded-lg overflow-hidden shadow-md bg-white" data-aos="zoom-in" data-aos-delay="200">
+                <img src="http://static.photos/minimal/640x360/7" alt="Minimal" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900">Minimal</h3>
+                    <p class="text-sm text-gray-500">6 photos</p>
+                </div>
+            </div>
+
+            <div class="collection-item rounded-lg overflow-hidden shadow-md bg-white" data-aos="zoom-in" data-aos-delay="300">
+                <img src="http://static.photos/cityscape/640x360/8" alt="City" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900">Cityscapes</h3>
+                    <p class="text-sm text-gray-500">22 photos</p>
+                </div>
+            </div> -->
+        </div>
+
+    </main>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 text-center hidden">
+        <button class="bg-indigo-600 text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-indigo-700 transition">
+            Load More Collections
+        </button>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-50 flex items-center justify-center lightbox hidden">
+        <div class="absolute inset-0 bg-black opacity-25" onclick="closeLightbox()"></div>
+        <div class="relative z-10">
+            <img id="lightbox-img" src="" alt="" class="lightbox-img rounded-lg">
+            <div class="absolute top-0 right-0 m-4">
+                <button onclick="closeLightbox()" class="text-white hover:text-gray-300">
+                    <i data-feather="x" class="w-8 h-8"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">PixelVault</h3>
+                    <p class="text-gray-400">My personal gallery for sharing </br> photos from car meets.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com/prjct.ph" class="flex items-center text-gray-400 hover:text-white space-x-2">
+                          <i data-feather="instagram" class="w-5 h-5"></i>
+                          <span>@prjct.ph</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 PixelVault. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Lightbox functionality
+        function openLightbox(element) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = element.src;
+            lightboxImg.alt = element.alt;
+            lightbox.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox when pressing ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Feather icons replacement
+        feather.replace();
+    </script>
+</body>
+</html>
